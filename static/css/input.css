@@ -1,0 +1,113 @@
+/* Reset dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif, Arial;
+}
+
+body {
+    background-color: #B0CD96;
+    color: #000;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background-color: #E4DBA5;
+    border-radius: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* Form wrapper */
+.form-wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Form section */
+.form-section {
+    background-color: #E4DBA5;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.15);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label */
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Optional text */
+.optional {
+    color: red;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* Input */
+input[type="text"] {
+    border-radius: 15px;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]::placeholder {
+    font-style: italic;
+    font-weight: 400;
+    color: #555;
+}
+
+input[type="text"]:focus {
+    border-color: #777;
+}
+
+/* Button */
+.submit-btn {
+    background-color: #FFAA6E;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 40px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 25px auto 0 auto;
+    display: block;
+    cursor: pointer;
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #ff7c22;
+    color: #fff;
+}

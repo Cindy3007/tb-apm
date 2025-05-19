@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Langkah Awal Menemukan Jalan Karirmu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/input.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Langkah Awal Menemukan Jalan Karirmu</h1>
+            <p>Setiap orang punya potensi unik. Yuk, mulai dari sini dan bantu kami kenali dirimu lebih baik.</p>
+        </header>
+
+        <main class="form-wrapper">
+            <div class="form-section">
+                <label for="jurusan">Jurusan</label>
+                <input type="text" id="jurusan" placeholder="Input jurusan anda disini" />
+
+                <label for="jenjang">Jenjang Pendidikan</label>
+                <input type="text" id="jenjang" placeholder="Input jenjang pendidikan anda disini" />
+
+                <label for="lamaStudi">Lama Masa Studi</label>
+                <input type="text" id="lamaStudi" placeholder="Input lama masa studi anda disini" />
+            </div>
+
+            <div class="form-section">
+                <label for="lokasi">Lokasi yang diinginkan</label>
+                <input type="text" id="lokasi" placeholder="Input lokasi kerja yang anda inginkan disini" />
+
+                <label for="kemampuan">Kemampuan yang dimiliki</label>
+                <input type="text" id="kemampuan" placeholder="Input kemampuan anda disini" />
+
+                <label for="magang">
+                    Pengalaman Magang <span class="optional">(opsional)</span>
+                </label>
+                <input type="text" id="magang" placeholder="Input pengalaman anda semasa kuliah disini" />
+            </div>
+        </main>
+
+        <button class="submit-btn">Yuk, Lihat Hasilnya!</button>
+    </div>
+</body>
+</html>
