@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Langkah Awal Menemukan Jalan Karirmu</title>
+    <title>Input Data</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/input.css') }}">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="container">
         <header class="header">
             <h1>Langkah Awal Menemukan Jalan Karirmu</h1>
@@ -14,12 +15,18 @@
         </header>
 
         <main class="form-wrapper">
-            <div class="form-section">
+           <div class="form-section">
                 <label for="jurusan">Jurusan</label>
                 <input type="text" id="jurusan" placeholder="Input jurusan anda disini" />
 
                 <label for="jenjang">Jenjang Pendidikan</label>
-                <input type="text" id="jenjang" placeholder="Input jenjang pendidikan anda disini" />
+                <select id="jenjang">
+                    <option value="" selected hidden>Pilih jenjang pendidikan anda</option>
+                    <option value="D3">Diploma 3 (D3)</option>
+                    <option value="D4">Diploma 4 (D4)</option>
+                    <option value="S1">Sarjana (S1)</option>
+                    <option value="S2">Magister (S2)</option>
+                </select>
 
                 <label for="lamaStudi">Lama Masa Studi</label>
                 <input type="text" id="lamaStudi" placeholder="Input lama masa studi anda disini" />
@@ -41,5 +48,56 @@
 
         <button class="submit-btn">Yuk, Lihat Hasilnya!</button>
     </div>
+
+    <div id="popup" class="popup-container">
+        <div class="popup-box">
+            <h2>Rekomendasi Karir Terbaik untuk Anda</h2>
+            <p><strong>Industri:</strong> Makanan & Minuman/Katering/Restoran</p>
+            <p><strong>Kecocokan:</strong> 35.41%</p>
+            <p><strong>Deskripsi:</strong><br>
+                Saat ini Boga Group membutuhkan beberapa posisi Internship Marketing (Harian), Freshgraduate dan Mahasiswa tingkat akhir Dipersilahkan untuk melamar.
+            </p>
+            <button class="popup-btn" onclick="closePopup()">Lihat Rekomendasi Lainnya</button>
+        </div>
+    </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    const submitBtn = document.querySelector('.submit-btn');
+    const popup = document.getElementById('popup');
+
+    submitBtn.addEventListener('click', function () {
+        popup.style.display = 'flex';
+    });
+
+    function closePopup() {
+        popup.style.display = 'none';
+        }
+        
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {"value": 100},
+            "color": {"value": "#333333"},
+            "shape": {"type": "circle"},
+            "opacity": {"value": 0.6},
+            "size": {"value": 2},
+            "line_linked": {
+                "enable": true,
+                "distance": 180,
+                "color": "#444444",
+                "opacity": 0.3,
+                "width": 1
+            },
+            "move": {"enable": true, "speed": 1.5}
+        },
+    
+        "interactivity": {
+            "detect_on": "canvas","events": {
+                "onhover": {"enable": true,"mode": "repulse"}
+            }
+        },
+        "retina_detect": true
+    });
+</script>
 </html>
