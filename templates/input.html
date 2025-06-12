@@ -14,90 +14,139 @@
             <p>Setiap orang punya potensi unik. Yuk, mulai dari sini dan bantu kami kenali dirimu lebih baik.</p>
         </header>
 
-        <main class="form-wrapper">
-           <div class="form-section">
-                <label for="jurusan">Jurusan</label>
-                <input type="text" id="jurusan" placeholder="Input jurusan anda disini" />
+        <!-- LANGKAH 1: Bungkus semua dalam <form> dan beri ID -->
+        <form id="recommendationForm">
+            <main class="form-wrapper">
+                <div class="form-section">
+                    <label for="jurusan">Jurusan</label>
+                    <!-- LANGKAH 2: Tambahkan atribut 'name' pada setiap input -->
+                    <input type="text" id="jurusan" name="jurusan" placeholder="Input jurusan anda disini" required />
 
-                <label for="jenjang">Jenjang Pendidikan</label>
-                <select id="jenjang">
-                    <option value="" selected hidden>Pilih jenjang pendidikan anda</option>
-                    <option value="D3">Diploma 3 (D3)</option>
-                    <option value="D4">Diploma 4 (D4)</option>
-                    <option value="S1">Sarjana (S1)</option>
-                    <option value="S2">Magister (S2)</option>
-                </select>
+                    <label for="jenjang">Jenjang Pendidikan</label>
+                    <select id="jenjang" name="jenjang_pendidikan" required>
+                        <option value="" selected hidden>Pilih jenjang pendidikan anda</option>
+                        <option value="D3">Diploma 3 (D3)</option>
+                        <option value="D4">Diploma 4 (D4)</option>
+                        <option value="S1">Sarjana (S1)</option>
+                        <option value="S2">Magister (S2)</option>
+                    </select>
 
-                <label for="lamaStudi">Lama Masa Studi</label>
-                <input type="text" id="lamaStudi" placeholder="Input lama masa studi anda disini" />
-            </div>
+                    <label for="lamaStudi">Lama Masa Studi</label>
+                    <input type="text" id="lamaStudi" name="lama_studi" placeholder="Input lama masa studi anda disini" required />
+                </div>
 
-            <div class="form-section">
-                <label for="lokasi">Lokasi yang diinginkan</label>
-                <input type="text" id="lokasi" placeholder="Input lokasi kerja yang anda inginkan disini" />
+                <div class="form-section">
+                    <label for="lokasi">Lokasi yang diinginkan</label>
+                    <input type="text" id="lokasi" name="lokasi_kerja" placeholder="Input lokasi kerja yang anda inginkan disini" required />
 
-                <label for="kemampuan">Kemampuan yang dimiliki</label>
-                <input type="text" id="kemampuan" placeholder="Input kemampuan anda disini" />
+                    <label for="kemampuan">Kemampuan yang dimiliki</label>
+                    <input type="text" id="kemampuan" name="kemampuan" placeholder="Input kemampuan anda disini" required />
 
-                <label for="magang">
-                    Pengalaman Magang <span class="optional">(opsional)</span>
-                </label>
-                <input type="text" id="magang" placeholder="Input pengalaman anda semasa kuliah disini" />
-            </div>
-        </main>
-
-        <button class="submit-btn">Yuk, Lihat Hasilnya!</button>
+                    <label for="magang">
+                        Pengalaman Magang <span class="optional">(opsional)</span>
+                    </label>
+                    <input type="text" id="magang" name="pengalaman_magang" placeholder="Input pengalaman anda semasa kuliah disini" />
+                </div>
+            </main>
+            
+            <!-- Tombol ini sekarang akan memicu JavaScript, bukan aksi form default -->
+            <button type="submit" class="submit-btn">Yuk, Lihat Hasilnya!</button>
+        </form>
     </div>
 
-    <div id="popup" class="popup-container">
+    <!-- Popup untuk menampilkan hasil, awalnya disembunyikan -->
+    <div id="popup" class="popup-container" style="display: none;">
         <div class="popup-box">
             <h2>Rekomendasi Karir Terbaik untuk Anda</h2>
-            <p><strong>Industri:</strong> Makanan & Minuman/Katering/Restoran</p>
-            <p><strong>Kecocokan:</strong> 35.41%</p>
-            <p><strong>Deskripsi:</strong><br>
-                Saat ini Boga Group membutuhkan beberapa posisi Internship Marketing (Harian), Freshgraduate dan Mahasiswa tingkat akhir Dipersilahkan untuk melamar.
-            </p>
-            <button class="popup-btn" onclick="closePopup()">Lihat Rekomendasi Lainnya</button>
+            <!-- LANGKAH 3: Beri ID pada elemen yang akan diisi data -->
+            <p><strong>Pekerjaan:</strong> <span id="popupTitle"></span></p>
+            <p><strong>Industri:</strong> <span id="popupCompany"></span></p>
+            <p><strong>Kecocokan:</strong> <span id="popupMatch"></span></p>
+            <p><strong>Deskripsi:</strong><br><span id="popupDescription"></span></p>
+            
+            <!-- LANGKAH 4: Ubah tombol menjadi link ke halaman hasil -->
+            <a href="{{ url_for('index_bp.show_all_recommendations') }}" class="popup-btn">Lihat Semua Rekomendasi</a>
         </div>
     </div>
-</body>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-    const submitBtn = document.querySelector('.submit-btn');
-    const popup = document.getElementById('popup');
-
-    submitBtn.addEventListener('click', function () {
-        popup.style.display = 'flex';
-    });
-
-    function closePopup() {
-        popup.style.display = 'none';
-        }
-        
-    particlesJS("particles-js", {
-        "particles": {
-            "number": {"value": 100},
-            "color": {"value": "#333333"},
-            "shape": {"type": "circle"},
-            "opacity": {"value": 0.6},
-            "size": {"value": 2},
-            "line_linked": {
-                "enable": true,
-                "distance": 180,
-                "color": "#444444",
-                "opacity": 0.3,
-                "width": 1
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Inisialisasi particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {"value": 100},
+                "color": {"value": "#333333"},
+                "shape": {"type": "circle"},
+                "opacity": {"value": 0.6},
+                "size": {"value": 2},
+                "line_linked": {
+                    "enable": true,
+                    "distance": 180,
+                    "color": "#444444",
+                    "opacity": 0.3,
+                    "width": 1
+                },
+                "move": {"enable": true, "speed": 1.5}
             },
-            "move": {"enable": true, "speed": 1.5}
-        },
-    
-        "interactivity": {
-            "detect_on": "canvas","events": {
-                "onhover": {"enable": true,"mode": "repulse"}
-            }
-        },
-        "retina_detect": true
-    });
-</script>
+            "interactivity": {
+                "detect_on": "canvas","events": {
+                    "onhover": {"enable": true,"mode": "repulse"}
+                }
+            },
+            "retina_detect": true
+        });
+
+        // --- LOGIKA BARU UNTUK MENGHUBUNGKAN KE BACKEND ---
+        
+        const recommendationForm = document.getElementById('recommendationForm');
+        const popup = document.getElementById('popup');
+
+        recommendationForm.addEventListener('submit', function (event) {
+            // Mencegah form me-refresh halaman
+            event.preventDefault();
+
+            // Kumpulkan semua data dari form
+            const formData = new FormData(recommendationForm);
+
+            // Tampilkan pesan loading (opsional, tapi disarankan)
+            document.getElementById('popupTitle').textContent = "Mencari...";
+            document.getElementById('popupCompany').textContent = "Mohon tunggu...";
+            document.getElementById('popupMatch').textContent = "";
+            document.getElementById('popupDescription').textContent = "Model kami sedang menganalisis profil Anda.";
+            popup.style.display = 'flex';
+
+            // Kirim data ke API backend menggunakan fetch
+            fetch("{{ url_for('index_bp.api_recommend') }}", {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    alert("Terjadi kesalahan: " + data.error);
+                    popup.style.display = 'none'; // Sembunyikan popup jika error
+                    return;
+                }
+                
+                // Isi data popup dari JSON yang diterima
+                document.getElementById('popupTitle').textContent = data.title || 'N/A';
+                document.getElementById('popupCompany').textContent = data.company || 'N/A';
+                document.getElementById('popupMatch').textContent = data.match || 'N/A';
+                document.getElementById('popupDescription').textContent = data.description || 'Tidak ada deskripsi.';
+                
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Tidak dapat terhubung ke server. Pastikan server Flask berjalan dan tidak ada error di terminal.');
+                popup.style.display = 'none'; // Sembunyikan popup jika error
+            });
+        });
+
+    </script>
+</body>
 </html>

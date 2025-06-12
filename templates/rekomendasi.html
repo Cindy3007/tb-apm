@@ -1,92 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Recommendations</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/rekomendasi.css') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hasil Rekomendasi Pekerjaan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rekomendasi.css') }}">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Job Recommendations For Your Profile</h1>
+    <div class="container">
+        <div class="header">
+            <h1>Rekomendasi Pekerjaan Untuk Profil Anda</h1>
+        </div>
+
+        <div class="content">
+            <div class="image-section">
+                <!-- Pastikan gambar ini ada di folder static/css/images/ -->
+                <img src="{{ url_for('static', filename='css/images/image.png') }}" alt="Ilustrasi Pekerjaan">
+            </div>
+
+            <div class="job-list">
+                <!-- 
+                  Loop Jinja2 untuk menampilkan setiap pekerjaan dari variabel 'jobs'
+                  yang dikirim oleh backend di routes.py.
+                -->
+                {% for job in jobs %}
+                <div class="job-item" onclick="toggleDetails('details-{{ loop.index }}')">
+                    <!-- Menampilkan judul pekerjaan secara dinamis -->
+                    <p>{{ loop.index }}. {{ job.title }}</p>
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <!-- ID dibuat unik menggunakan loop.index agar JavaScript bekerja dengan benar -->
+                <div class="job-details" id="details-{{ loop.index }}">
+                    <ul>
+                        <!-- Menampilkan data dari model secara dinamis -->
+                        <li><strong>Industri:</strong> {{ job.company }}</li>
+                        <li><strong>Kecocokan:</strong> {{ job.match }}</li>
+                        <li><strong>Deskripsi:</strong> {{ job.description }}</li>
+                    </ul>
+                </div>
+                {% else %}
+                <!-- Pesan ini akan muncul jika tidak ada rekomendasi yang ditemukan -->
+                <p>Maaf, tidak ada rekomendasi yang cocok ditemukan untuk profil Anda.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{{ url_for('index_bp.index') }}" class="back-btn">Coba Lagi</a>
     </div>
 
-    <div class="content">
-      <div class="image-section">
-         <img src="/static/images/image.png" alt="Job Illustration">
-      </div>
-
-     <div class="job-list">
-  <div class="job-item" onclick="toggleDetails('marketing-details')">
-    <p>Senior Clinical Research Associate (Jakarta Raya)</p>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="job-details" id="marketing-details">
-    <ul>
-      <li><strong>Industri:</strong> BioTeknologi/Farmasi/Riset klinik</li>
-      <li><strong>Kecocokan:</strong> 19.72%</li>
-      <li><strong>Deskripsi:</strong> Posisi ini bertanggung jawab atas manajemen proyek dan manajemen lokasi studi, mulai dari pemilihan lokasi, inisiasi, pemantauan, hingga penutupan studi klinis yang ditugaskan</li>
-    </ul>
-  </div>
-
-  
-  <div class="job-item" onclick="toggleDetails('programmer-details')">
-    <p>Clinical Research Associate II (Jakarta Raya) </p>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="job-details" id="programmer-details">
-    <ul>
-      <li><strong>Industri:</strong>  BioTeknologi/Farmasi/Riset klinik</li>
-      <li><strong>Kecocokan:</strong> 19.36%</li>
-      <li><strong>Deskripsi:</strong> Posisi ini bertanggung jawab atas manajemen lokasi studi, mulai dari pemilihan lokasi, inisiasi, pemantauan, hingga penutupan studi klinis yang ditugaskan, sesuai dengan pedoman dan kebijakan Tigermed.</li>
-    </ul>
-  </div>
-
- 
-  <div class="job-item" onclick="toggleDetails('sixmonth-details')">
-    <p>Staff Public Relation (Semarang) </p>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="job-details" id="sixmonth-details">
-    <ul>
-      <li><strong>Industri:</strong> nan </li>
-      <li><strong>Kecocokan:</strong>19.28%</li>
-      <li><strong>Deskripsi:</strong> Menyampaikan pesan atau informasi dari perusahaan secara lisan, tertulis atau visual kepada publik, sehingga masyarakat memperoleh pengertian yang benar dan tepat mengenai kondisi perusahaan</li>
-    </ul>
-  </div>
-
-  <div class="job-item" onclick="toggleDetails('finance-details')">
-    <p>Java Developer (Entry Level) Fresh Graduates (Jakarta Barat) </p>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="job-details" id="finance-details">
-    <ul>
-      <li><strong>Industri:</strong> Komputer/Teknik Informatika (Perangkat Lunak)</li>
-      <li><strong>Kecocokan:</strong> 16.91%</li>
-      <li><strong>Deskripsi:</strong> KKandidat harus memiliki setidaknya gelar Sarjana di bidang Teknik (Komputer/Telekomunikasi) atau setara, dengan IPK minimal 3,00. Fasih berbahasa Inggris. Tidak diperlukan pengalaman kerja.
-Keahlian yang Dibutuhkan: Java Preferably</li>
-    </ul>
-  </div>
-
- 
-  <div class="job-item" onclick="toggleDetails('java-details')">
-    <p> Senior Associate IT Software Development Engineer (Jakarta Raya) </p>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="job-details" id="java-details">
-    <ul>
-      <li><strong>Industri:</strong> Komputer/Teknik Informatika (Perangkat Keras)</li>
-      <li><strong>Kecocokan:</strong>  16.62% </li>
-      <li><strong>Deskripsi:</strong> Di NTT, kami percaya bahwa dengan menggunakan teknologi inovatif, kami dapat menyelesaikan tantangan global dan menciptakan dunia yang berkelanjutan dan aman. Kami mencari orang-orang yang memiliki rasa ingin tahu, dari berbagai latar belakang</li>
-    </ul>
-  </div>
-</div>
+<script>
+    function toggleDetails(id) {
+        const detailBox = document.getElementById(id);
+        if (detailBox) {
+            detailBox.style.display = detailBox.style.display === 'block' ? 'none' : 'block';
+        }
+    }
+</script>
 </body>
 </html>
-<script>
-  function toggleDetails(id) {
-    const detailBox = document.getElementById(id);
-    detailBox.style.display = detailBox.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
