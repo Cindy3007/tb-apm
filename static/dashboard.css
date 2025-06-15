@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e3f2dc 0%, #d4edda 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(135deg, #b8dab5 0%, #a8d0a8 100%);
+    padding: 80px 40px;
+    border-radius: 0;
+    margin-bottom: 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 3.5em;
+    margin: 0;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 span {
+    display: block;
+    font-size: 1em;
+    color: #000000;
+}
+
+header p {
+    font-size: 1.1em;
+    color: #000000;
+    margin: 25px 0 35px;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #ff7f50 0%, #ff9364 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 147, 100, 0.4);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 147, 100, 0.6);
+    background: linear-gradient(135deg, #ff6347 0%, #ff7f50 100%);
+}
+
+.cta-button svg {
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover svg {
+    transform: translateX(3px);
+}
+
+.recommendation-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #f0e68c 0%, #e9dd9e 100%);
+    padding: 60px 40px;
+    border-radius: 0;
+    flex-wrap: wrap;
+    gap: 40px;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 300px);
+}
+
+.recommendation-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.recommendation-text {
+    flex: 1;
+    min-width: 350px;
+    position: relative;
+    z-index: 2;
+}
+
+.recommendation-text h2 {
+    font-size: 2.5em;
+    margin-bottom: 35px;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.recommendation-text h2 .highlight {
+    color: #000000;
+    position: relative;
+}
+
+.career-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 450px;
+}
+
+.career-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: none;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.career-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, #a3c99b 0%, #88b380 100%);
+}
+
+.career-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #a3c99b 0%, #88b380 100%);
+    border-radius: 14px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    color: white;
+    box-shadow: 0 4px 12px rgba(163, 201, 155, 0.3);
+}
+
+.career-content {
+    flex: 1;
+}
+
+.career-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2c4a2e;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.career-desc {
+    color: #5a6c57;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.illustration {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column; /* <-- DARI SINI */
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    gap: 20px; /* Jarak antara gambar dan card */
+}
+
+.image-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+
+.illustration .career-card {
+    width: 100%; /* Biar ikut lebar gambar */
+    max-width: 400px;
+}
+
+.illustration img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.illustration img:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 60px 30px;
+    }
+    
+    header h1 {
+        font-size: 2.5em;
+    }
+    
+    header p {
+        font-size: 1.1em;
+    }
+    
+    .recommendation-section {
+        padding: 40px 25px;
+        gap: 30px;
+    }
+    
+    .recommendation-text h2 {
+        font-size: 2em;
+    }
+    
+    .career-list {
+        max-width: 100%;
+    }
+    
+    .career-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 20px;
+    }
+    
+    .career-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .career-card::before {
+        width: 100%;
+        height: 4px;
+        top: 0;
+        left: 0;
+        background: linear-gradient(90deg, #a3c99b 0%, #88b380 100%);
+    }
+    
+    .recommendation-text,
+    .illustration {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .recommendation-text h2 {
+        font-size: 1.8em;
+    }
+    
+    .cta-button {
+        padding: 14px 28px;
+        font-size: 1em;
+    }
+    
+    .career-icon svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+    stroke: white;
+    fill: none;
+    stroke-width: 2;
+}
+
+.career-icon svg path,
+.career-icon svg line,
+.career-icon svg polyline,
+.career-icon svg circle,
+.career-icon svg rect {
+    stroke: white !important;
+    fill: none !important;
+}
+
+}
