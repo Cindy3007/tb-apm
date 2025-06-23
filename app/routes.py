@@ -1,17 +1,13 @@
-# routes.py
 
 from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for
-from app.utils import get_recommendations  # Pastikan fungsi ini ada dan benar
+from app.utils import get_recommendations  
 
-# Membuat Blueprint untuk routing
 index_bp = Blueprint('index_bp', __name__)
 
-# 1. Route untuk menampilkan halaman utama (dashboard)
 @index_bp.route('/')
 def index():
     return render_template('dashboard.html')
 
-# 2. Route untuk halaman form input rekomendasi karir
 @index_bp.route('/input')
 def input_form():
     return render_template('input.html')

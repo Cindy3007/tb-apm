@@ -129,11 +129,10 @@
             .then(data => {
                 if (data.error) {
                     alert("Terjadi kesalahan: " + data.error);
-                    popup.style.display = 'none'; // Sembunyikan popup jika error
+                    popup.style.display = 'none'; 
                     return;
                 }
-                
-                // Isi data popup dari JSON yang diterima
+
                 document.getElementById('popupTitle').textContent = data.title || 'N/A';
                 document.getElementById('popupCompany').textContent = data.company || 'N/A';
                 document.getElementById('popupMatch').textContent = data.match || 'N/A';
@@ -143,7 +142,7 @@
             .catch(error => {
                 console.error('Error:', error);
                 alert('Tidak dapat terhubung ke server. Pastikan server Flask berjalan dan tidak ada error di terminal.');
-                popup.style.display = 'none'; // Sembunyikan popup jika error
+                popup.style.display = 'none'; 
             });
         });
 
